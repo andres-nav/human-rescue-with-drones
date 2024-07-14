@@ -1,21 +1,25 @@
-import type { NextAuthConfig } from 'next-auth';
+import type { NextAuthConfig } from "next-auth";
 
 export const authConfig = {
   trustHost: true,
   pages: {
-    signIn: '/login',
+    signIn: "/login",
   },
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
-      const isOnDashboard = nextUrl.pathname.startsWith('/member');
+      const isOnDashboard = nextUrl.pathname.startsWith("/member");
+      // const isGraphQL = nextUrl.pathname === "/api/graphql";
+
+      // if (isOnDashboard || isGraphQL) {
       if (isOnDashboard) {
         if (isLoggedIn) return true;
 
         return false; // Redirect unauthenticated users to login page
       } else if (isLoggedIn) {
-        const isOnAuth = nextUrl.pathname === '/login' || nextUrl.pathname === '/signup';
-        if (isOnAuth) return Response.redirect(new URL('/member', nextUrl));
+        const isOnAuth =
+          nextUrl.pathname === "/login" || nextUrl.pathname === "/signup";
+        if (isOnAuth) return Response.redirect(new URL("/member", nextUrl));
 
         return true;
       }

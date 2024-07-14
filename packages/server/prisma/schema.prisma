@@ -1,6 +1,8 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+// When changing this file, run `npx prisma generate` to generate the types for pothos
+
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")

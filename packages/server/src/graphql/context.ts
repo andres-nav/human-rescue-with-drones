@@ -8,17 +8,15 @@ export async function createContext({
 }: {
     req: NextApiRequest;
     res: NextApiResponse;
-}) {
-    // const session = await getSession(req, res)
-    const session = undefined;
+}): Promise<{ user?: Session["user"] }> {
+    const session = await getSession({ req });
 
-    // if the user is not logged in, return null
-    if (!session || typeof session === "undefined") return {};
+    // if the user is not logged in, return an empty object
+    if (!session || !session.user) return {};
 
-    const { user, accessToken } = session;
+    const { user } = session;
 
     return {
         user,
-        accessToken,
     };
 }

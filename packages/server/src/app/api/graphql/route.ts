@@ -5,12 +5,17 @@ import { getSession } from "next-auth/react";
 import { schema } from "../../../graphql/schema";
 import { createContext } from "../../../graphql/context";
 
-const { handleRequest } = createYoga<{
-    req: NextApiRequest;
-    res: NextApiResponse;
-}>({
+const { handleRequest } = createYoga<
+    {
+        req: NextApiRequest;
+        res: NextApiResponse;
+    },
+    {
+        session: Session;
+    }
+>({
     schema,
-    context: createContext,
+    // context: createContext,
     graphqlEndpoint: "/api/graphql",
     fetchAPI: { Response },
 });
