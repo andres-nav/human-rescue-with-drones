@@ -9,9 +9,7 @@ export const authConfig = {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
       const isOnDashboard = nextUrl.pathname.startsWith("/member");
-      // const isGraphQL = nextUrl.pathname === "/api/graphql";
 
-      // if (isOnDashboard || isGraphQL) {
       if (isOnDashboard) {
         if (isLoggedIn) return true;
 

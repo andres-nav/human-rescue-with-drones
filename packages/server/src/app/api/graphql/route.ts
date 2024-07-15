@@ -15,7 +15,7 @@ const { handleRequest } = createYoga<
     }
 >({
     schema,
-    // context: createContext,
+    context: createContext,
     graphqlEndpoint: "/api/graphql",
     fetchAPI: { Response },
 });

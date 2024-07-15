@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.10.8",
+    "@auth/prisma-adapter": "^2.4.1",
     "@pothos/core": "4.0.2",
     "@pothos/plugin-prisma": "4.0.3",
     "@pothos/plugin-relay": "^4.0.2",

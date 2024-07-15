@@ -1,22 +1,12 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import { auth } from "@/lib/auth";
 import type { Session } from "next-auth";
-import { getSession } from "next-auth/react";
 
-export async function createContext({
-    req,
-    res,
-}: {
-    req: NextApiRequest;
-    res: NextApiResponse;
-}): Promise<{ user?: Session["user"] }> {
-    const session = await getSession({ req });
-
-    // if the user is not logged in, return an empty object
-    if (!session || !session.user) return {};
-
-    const { user } = session;
+export async function createContext() {
+    const session: Session | null = await auth();
 
     return {
-        user,
+        id: session?.user.id,
+        email: session?.user.email,
+        name: session?.user.name,
     };
 }
