@@ -9,14 +9,14 @@ builder.prismaObject("User", {
         emailVerifToken: t.exposeString("emailVerifToken"),
         createdAt: t.field({ type: "Date" }),
         updatedAt: t.field({ type: "Date" }),
-        // drones: t.relation("drones", {
-        //     type: "DroneUser",
-        //     list: true,
-        // }),
-        // missions: t.relation("missions", {
-        //     type: "MissionUser",
-        //     list: true,
-        // }),
+        drones: t.relation("drones", {
+            type: "DroneUser",
+            list: true,
+        }),
+        missions: t.relation("missions", {
+            type: "MissionUser",
+            list: true,
+        }),
     }),
 });
 

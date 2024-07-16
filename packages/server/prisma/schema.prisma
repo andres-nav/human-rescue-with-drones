@@ -101,8 +101,8 @@ model Rule {
 
 model Mission {
   id               Int           @id @default(autoincrement())
-  name             String        // Name of the mission
-  description      String?       // Description of the mission
+  name             String        @unique
+  description      String?
   startTime        DateTime      // Start time of the mission
   endTime          DateTime?     // End time of the mission
   status           String        // Status of the mission (e.g., planned, ongoing, completed)

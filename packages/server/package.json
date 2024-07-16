@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "reset-db": "npx prisma db push --force-reset",
+    "seed-db": "npx prisma db seed",
+    "reset-and-seed": "pnpm run reset-db && pnpm run seed-db"
   },
   "dependencies": {
     "@apollo/client": "^3.10.8",
@@ -45,6 +48,6 @@
     "typescript": "^5.5.3"
   },
   "prisma": {
-    "seed": "ts-node --transpile-only prisma/seed.ts"
+    "seed": "ts-node prisma/seed.ts"
   }
 }
