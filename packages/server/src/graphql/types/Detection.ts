@@ -1,14 +1,15 @@
 import { builder } from "../builder";
 
-builder.prismaObject("Rule", {
+builder.prismaObject("Detection", {
         fields: (t) => ({
                 id: t.exposeID("id"),
+                droneId: t.exposeInt("droneId"),
                 missionId: t.exposeInt("missionId"),
-                condition: t.exposeString("condition"),
-                action: t.exposeString("action"),
-                priority: t.exposeInt("priority"),
-                isActive: t.exposeInt("isActive"),
-                createdAt: t.field({ type: "Date" }),
+                detectedObject: t.exposeString("detectedObject"),
+                confidence: t.exposeFloat("confidence"),
+                imageUrl: t.exposeString("imageUrl", { nullable: true }),
+                timestamp: t.field({ type: "DateTime" }),
+                drone: t.relation("drone"),
                 mission: t.relation("mission"),
                 alerts: t.relation("alerts", {
                         type: "Alert",

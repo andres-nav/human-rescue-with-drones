@@ -1,19 +1,12 @@
 import { builder } from "../builder";
 
-builder.prismaObject("Detection", {
+builder.prismaObject("MissionUser", {
         fields: (t) => ({
-                id: t.exposeID("id"),
-                droneId: t.exposeInt("droneId"),
                 missionId: t.exposeInt("missionId"),
-                detectedObject: t.exposeString("detectedObject"),
-                confidence: t.exposeFloat("confidence"),
-                imageUrl: t.exposeString("imageUrl", { nullable: true }),
-                timestamp: t.field({ type: "Date" }),
-                drone: t.relation("drone"),
+                userId: t.exposeInt("userId"),
+                role: t.exposeString("role"),
+                createdAt: t.field({ type: "Date" }),
                 mission: t.relation("mission"),
-                alerts: t.relation("alerts", {
-                        type: "Alert",
-                        list: true,
-                }),
+                user: t.relation("user"),
         }),
 });
