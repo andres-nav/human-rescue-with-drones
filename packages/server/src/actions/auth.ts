@@ -144,7 +144,7 @@ const sendVerificationEmail = async (email: string, token: string) => {
   });
 
   const emailData = {
-    from: '"Blog Nextjs Auth" <verification@test.com>',
+    from: '"6G Integration" <verification@test.com>',
     to: email,
     subject: "Email Verification",
     html: `
