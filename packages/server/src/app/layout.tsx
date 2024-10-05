@@ -15,16 +15,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body className={inter.className}>
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-          <div className="z-10 items-center font-mono text-sm lg:flex">
-            <Providers>
-              {children}
-            </Providers>
-          </div>
-        </main>
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );

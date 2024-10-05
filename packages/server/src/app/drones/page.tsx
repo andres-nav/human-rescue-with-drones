@@ -5,6 +5,8 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useSearchParams } from 'next/navigation';
 
+import MainLayout from "@/components/layouts/mainLayout";
+
 import ListMissions from "@/components/mission/list";
 import ListDetections from "@/components/detection/list";
 
@@ -38,11 +40,13 @@ export default function Mission() {
     }, [status]);
 
     return (
+        <MainLayout>
         <div className="flex flex-col">
             <div className="mb-4">
                 <ListMissions missions={missions}/>
                 <ListDetections detections={detections}/>
             </div>
         </div>
+        </MainLayout>
     );
 }

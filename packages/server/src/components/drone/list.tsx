@@ -6,7 +6,7 @@ export default function List({ drones }) {
     const router = useRouter();
 
     const handleDroneClick = (id) => {
-        router.push(`/drone?id=${id}`);
+        router.push(`/drones?id=${id}`);
     };
 
     return (

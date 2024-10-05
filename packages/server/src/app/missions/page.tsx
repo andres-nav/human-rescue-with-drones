@@ -5,6 +5,8 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useSearchParams } from 'next/navigation';
 
+import MainLayout from "@/components/layouts/mainLayout";
+
 import ListDrones from "@/components/drone/list";
 import ListAlerts from "@/components/alert/list";
 import ListRules from "@/components/rule/list";
@@ -43,12 +45,14 @@ export default function Mission() {
     }, [status]);
 
     return (
-        <div className="flex flex-col">
-            <div className="mb-4">
-                <ListDrones drones={drones} />
-                <ListAlerts alerts={alerts} />
-                <ListRules rules={rules} />
+        <MainLayout>
+            <div className="flex flex-col">
+                <div className="mb-4">
+                    <ListDrones drones={drones} />
+                    <ListAlerts alerts={alerts} />
+                    <ListRules rules={rules} />
+                </div>
             </div>
-        </div>
+        </MainLayout>
     );
 }

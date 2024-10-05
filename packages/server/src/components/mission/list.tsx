@@ -6,7 +6,7 @@ export default function List({ missions }) {
     const router = useRouter();
 
     const handleMissionClick = (id) => {
-        router.push(`/mission?id=${id}`);
+        router.push(`/missions?id=${id}`);
     };
 
     return (

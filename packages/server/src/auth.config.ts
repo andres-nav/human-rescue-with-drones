@@ -9,13 +9,15 @@ export const authConfig = {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
 
+      const isOnAuthPage = nextUrl.pathname === "/login" || nextUrl.pathname === "/signup";
+
       if (!isLoggedIn) {
-        return false;
+        return isOnAuthPage; // Allow access to auth pages if not logged in
       }
 
-      const isOnAuth =
-        nextUrl.pathname === "/login" || nextUrl.pathname === "/signup";
-      if (isOnAuth) return Response.redirect(new URL("/", nextUrl));
+      if (isOnAuthPage) {
+        return Response.redirect(new URL("/", nextUrl));
+      }
 
       return true;
     },
