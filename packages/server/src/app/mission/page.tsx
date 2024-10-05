@@ -27,7 +27,6 @@ export default function Mission() {
             if (!id || isNaN(parseInt(id))) {
                 return;
             }
-            console.log('id', id);
 
             findDronesForMission(id).then((res) => {
                 setDrones(res);

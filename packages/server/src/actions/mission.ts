@@ -26,6 +26,23 @@ export const findMissionsForUser = async (email: string) => {
   return missions;
 };
 
+export const findMissionsForDrone = async (droneId) => {
+    if (!droneId || isNaN(parseInt(droneId))) {
+        throw new Error("Invalid drone ID");
+    }
+
+    const drones = await prisma.missionDrone.findMany({
+        where: {
+            droneId: parseInt(droneId), // Ensure missionId is an integer
+        },
+        include: {
+            mission: true, // Include related drone data
+        },
+    });
+
+    return drones.map((missionDrone) => missionDrone.mission);
+}
+
 export const findMissionById = async (id: string) => {
     const mission = await prisma.mission.findUnique({
         where: {

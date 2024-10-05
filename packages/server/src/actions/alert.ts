@@ -9,7 +9,7 @@ export const findAlertsForMission = async (missionId) => {
 
     return await prisma.alert.findMany({
         where: {
-            missionId: parseInt(missionId), // Ensure missionId is an integer
+            missionId: parseInt(missionId),
         },
     });
 }

@@ -6,9 +6,9 @@ import { checkRulesForMission } from '@/actions/rule';
 
 export async function POST(req) {
     try {
-        const { droneId, missionId, detectedObject, confidence, imageUrl } = await req.json();
+        const { droneId, secret, missionId, detectedObject, confidence, imageUrl } = await req.json();
 
-        if (!droneId || !missionId || !detectedObject || confidence === undefined) {
+        if (!droneId || !secret || !missionId || !detectedObject || confidence === undefined) {
             return new Response(JSON.stringify({ message: 'Missing required fields' }), {
                 status: 400,
                 headers: {
@@ -17,7 +17,25 @@ export async function POST(req) {
             });
         }
 
-        // TODO: Check if droneId and missionId exist
+        const droneSecret = await prisma.drone.findUnique({
+            where: {
+                id: parseInt(droneId),
+            },
+            select: {
+                secret: true,
+            },
+        });
+
+        if (!droneSecret || droneSecret.secret !== secret) {
+            return new Response(JSON.stringify({ message: 'Invalid drone secret' }), {
+                status: 403,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+        }
+
+        // TODO: Check if droneId and missionId exist and if user has persmission
 
         const detection = await prisma.detection.create({
             data: {
