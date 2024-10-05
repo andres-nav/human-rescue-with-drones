@@ -11,5 +11,8 @@ export const findAlertsForMission = async (missionId) => {
         where: {
             missionId: parseInt(missionId),
         },
+        orderBy: {
+            createdAt: "desc",
+        },
     });
 }

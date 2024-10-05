@@ -1,5 +1,7 @@
 'use client'
 
+import {formatDate} from "@/lib/utils";
+
 export default function ListAlerts({ alerts }) {
     return (
         <div className="space-y-3 items-center">
@@ -9,6 +11,7 @@ export default function ListAlerts({ alerts }) {
                     <div key={alert.id} className="bg-white shadow-md rounded-md p-4">
                         <h2 className="text-xl font-bold">{alert.message}</h2>
                         <p>{alert.type}</p>
+                        <p className="text-sm text-gray-500">Created at: {formatDate(alert.createdAt)}</p>
                     </div>
                 ))}
             </div>

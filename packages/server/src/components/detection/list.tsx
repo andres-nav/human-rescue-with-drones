@@ -1,5 +1,7 @@
 'use client'
 
+import {formatDate} from "@/lib/utils";
+
 export default function List({ detections }) {
     return (
         <div className="space-y-3 items-center">
@@ -9,6 +11,7 @@ export default function List({ detections }) {
                     <div key={detection.id} className="bg-white shadow-md rounded-md p-4">
                         <h2 className="text-xl font-bold">{detection.detectedObject}</h2>
                         <p>{detection.confidence}</p>
+                        <p className="text-sm text-gray-500">Created at: {formatDate(detection.timestamp)}</p>
                     </div>
                 ))}
             </div>
