@@ -2,6 +2,8 @@
 
 import prisma from '@/lib/prisma';
 
+import { checkRulesForMission } from '@/actions/rule';
+
 export async function POST(req) {
     try {
         const { droneId, missionId, detectedObject, confidence, imageUrl } = await req.json();
@@ -26,6 +28,9 @@ export async function POST(req) {
                 imageUrl,
             },
         });
+
+        // check detections to create a new alert
+        checkRulesForMission(missionId, detection);
 
         return new Response(JSON.stringify(detection), {
             status: 201,

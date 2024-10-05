@@ -110,13 +110,13 @@ const alertData: Prisma.AlertCreateInput[] = [
 const ruleData: Prisma.RuleCreateInput[] = [
     {
         mission: { connect: { name: "Recon Mission Alpha" } },
-        condition: "objectName = 'person' with a probability > 0.5",
+        condition: '{"detectedObject": "person", "confidence": { "operator": ">=", "value": 0.8 }}',
         action: "create alert",
         priority: 5,
     },
     {
         mission: { connect: { name: "Surveillance Mission Beta" } },
-        condition: "batteryLevel < 20",
+        condition: '{"detectedObject": "person", "confidence": { "operator": ">=", "value": 0.8 }}',
         action: "send notification",
         priority: 8,
     },

@@ -7,15 +7,18 @@ import { useSearchParams } from 'next/navigation';
 
 import ListDrones from "@/components/drone/list";
 import ListAlerts from "@/components/alert/list";
+import ListRules from "@/components/rule/list";
 
 import { findDronesForMission } from "@/actions/drone";
 import { findAlertsForMission } from "@/actions/alert";
+import { findRulesForMission } from "@/actions/rule";
 
 export default function Mission() {
     const { data: session, status } = useSession()
-  const searchParams = useSearchParams();
+    const searchParams = useSearchParams();
     const [drones, setDrones] = useState([]);
     const [alerts, setAlerts] = useState([]);
+    const [rules, setRules] = useState([]);
 
     useEffect(() => {
         if (status === 'authenticated') {
@@ -33,6 +36,10 @@ export default function Mission() {
             findAlertsForMission(id).then((res) => {
                 setAlerts(res);
             });
+
+            findRulesForMission(id).then((res) => {
+                setRules(res);
+            });
         }
     }, [status]);
 
@@ -41,6 +48,7 @@ export default function Mission() {
             <div className="mb-4">
                 <ListDrones drones={drones} />
                 <ListAlerts alerts={alerts} />
+                <ListRules rules={rules} />
             </div>
         </div>
     );
