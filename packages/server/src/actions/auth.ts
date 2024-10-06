@@ -113,7 +113,9 @@ export async function signUp(
 }
 
 export async function logout() {
-  return await signOut();
+  await signOut();
+  redirect("/");
+  return;
 }
 
 export const findUserByEmail = async (email: string) => {
