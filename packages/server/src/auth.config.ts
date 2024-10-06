@@ -9,7 +9,7 @@ export const authConfig = {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
 
-      const isOnAuthPage = nextUrl.pathname === "/login" || nextUrl.pathname === "/signup";
+      const isOnAuthPage = nextUrl.pathname === "/login" || nextUrl.pathname === "/signup" || nextUrl.pathname === "/email/verify" || nextUrl.pathname === "/email/verify/send";
 
       if (!isLoggedIn) {
         return isOnAuthPage; // Allow access to auth pages if not logged in
