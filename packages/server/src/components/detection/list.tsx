@@ -30,7 +30,7 @@ export default function List({ detections }) {
     return (
         <div className="space-y-3 items-center">
             <h1 className="text-2xl font-bold">Detections</h1>
-            <div className="grid grid-cols-1 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {detections && detections.map((detection) => (
                     <div
                         key={detection.id}
@@ -60,7 +60,7 @@ export default function List({ detections }) {
                 <DialogTrigger asChild>
                     <div />
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px] center">
+                <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
                         <DialogTitle>Detection</DialogTitle>
                         <DialogDescription>

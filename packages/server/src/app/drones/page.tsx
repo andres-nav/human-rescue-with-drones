@@ -9,6 +9,7 @@ import MainLayout from "@/components/layouts/mainLayout";
 
 import ListMissions from "@/components/mission/list";
 import ListDetections from "@/components/detection/list";
+import Stream from "@/components/video/stream";
 
 import { findMissionsForDrone } from "@/actions/mission";
 import { findDetectionsForDrone } from "@/actions/detection";
@@ -45,6 +46,9 @@ export default function Mission() {
             <div className="mb-4">
                 <ListMissions missions={missions}/>
                 <ListDetections detections={detections}/>
+            </div>
+            <div className="mb-4">
+                <Stream />
             </div>
         </div>
         </MainLayout>
